@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0px;
+    }
+
+    .container {
+        width: 40%;
+        background-color: rgb(16, 53, 89);
+        height: auto;
+        border: 5px solid black;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+        top: 40px;
+    }
+
+    .container h1 {
+        color: aliceblue;
+    }
+
+    .center {
+        display: flex;
+        justify-content: center;
+    }
+
+    input {
+        width: 15vw;
+        height: 5vh;
+        border-radius: 4px;
+        padding-left: 6px;
+        font-size: 18px;
+        border-radius: 5px;
+    }
+
+    .container button {
+        background-color: red;
+        color: #faf8f8;
+        width: 7vw;
+        height: 5.5vh;
+        border-radius: 5px;
+
+    }
+
+    table {
+        width: 100%;
+    }
+
+    .table_heading {
+        background-color: #faf8f8;
+    }
+
+    .edit_c { 
+        height: 50px;
+        width: 10px; 
+        background-color: rgba(124, 59, 235, 0.587) !important;
+    }
+
+    .save_c {
+        background-color: rgb(92, 44, 180) !important;
+    }
+
+    .name_input {
+        width: 350px;
+    }
+
+    .contact_input {
+        width: 350px;
+    }
+</style>
+<script>
+    var header = "<thead class='table_heading'><th>Name</th><th>Contact</th><th>Operation</th></thead>";
+    var tbl_data = header;
+    function clicker() {
+        var n = document.getElementById("name_box").value;
+        var c = document.getElementById("contact_box").value;
+        tbl_data += "<tr><td><input type = 'text' value = '" + n + "' readOnly></td><td><input type = 'tel' value = '" + c + "' readOnly></td><td><button class='edit_c' onclick='edit(this)'>Edit</button> <button onclick='deletebox(this)'>Delete</button></td></tr>";
+        document.getElementById("tbl").innerHTML = tbl_data;
+        var n = document.getElementById("name_box").value = "";
+        var c = document.getElementById("contact_box").value = "";
+    }
+    function edit(elem) {
+        elem.parentElement.parentElement.children[0].children[0].readOnly = false;
+        elem.parentElement.parentElement.children[1].children[0].readOnly = false;
+        elem.parentElement.innerHTML = "<button class='save_c' onclick='save(this)'>Save</button> <button onclick='deletebox(this)'>Delete</button>";
+    }
+    function save(elem) {
+        elem.parentElement.parentElement.children[0].children[0].readOnly = true;
+        elem.parentElement.parentElement.children[1].children[0].readOnly = true;
+        elem.parentElement.innerHTML = "<button class='edit_c' onclick='edit(this)'>Edit</button> <button onclick='deletebox(this)'>Delete</button>";
+    }
+    function deletebox(elem) {
+        elem.parentElement.parentElement.remove();
+        tbl_data = header;
+    }
+    function search() {
+        var length_data = document.getElementById("tbl").children[1].childNodes.length;
+        var key = document.getElementById("search_box").value;
+        var q = "";
+        var a = "";
+        for (var i = 0; i < length_data; i < a , i++) {
+            q = document.getElementById("tbl").children[1].children[i].children[0].children[0].value;
+            a = document.getElementById("tbl").children[1].children[i].children[1].children[0].value;
+            if (key == q || key == a) {
+                document.getElementById("tbl").children[1].children[i].children[0].children[0].style.backgroundColor = "lightgreen";
+                document.getElementById("tbl").children[1].children[i].children[1].children[0].style.backgroundColor = "lightgreen";
+            }
+        }
+    }
+
+</script>
+
+<body>
+    <div class="center">
+
+        <div class="container">
+            <h1>Phone Book</h1><br>
+            <input type="text" name="" id="search_box" placeholder="Search box">
+            <button onclick="search()">Search</button><br><br><br><br><br>
+            <input type="text" name="" id="name_box" class="name_input" placeholder="Enter your name"><br><br>
+            <input type="tel" name="" id="contact_box" class="contact_input"
+                placeholder="Enter your Contact Number"><br><br>
+            <button onclick="clicker()">Submit</button><br><br>
+            <table border="2" id="tbl">
+
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
