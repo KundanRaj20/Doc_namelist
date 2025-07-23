@@ -86,6 +86,7 @@
         document.getElementById("tbl").innerHTML = tbl_data;
         var n = document.getElementById("name_box").value = "";
         var c = document.getElementById("contact_box").value = "";
+            }
     }
     function edit(elem) {
         elem.parentElement.parentElement.children[0].children[0].readOnly = false;
@@ -135,5 +136,4 @@
         </div>
     </div>
 </body>
-
 </html>
