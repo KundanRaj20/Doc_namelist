@@ -81,6 +81,7 @@
     function clicker() {
         var n = document.getElementById("name_box").value;
         var c = document.getElementById("contact_box").value;
+            if(!(n=="" || c=="")){
         tbl_data += "<tr><td><input type = 'text' value = '" + n + "' readOnly></td><td><input type = 'tel' value = '" + c + "' readOnly></td><td><button class='edit_c' onclick='edit(this)'>Edit</button> <button onclick='deletebox(this)'>Delete</button></td></tr>";
         document.getElementById("tbl").innerHTML = tbl_data;
         var n = document.getElementById("name_box").value = "";
